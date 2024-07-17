@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #bb86fc;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    text-align: left;
+}
+
+legend {
+    padding: 0 10px;
+    font-weight: bold;
+    color: #bb86fc;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #bb86fc;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.custom-file-upload:hover {
+    background-color: #9c64d1;
+}
+
+.file-upload-text {
+    display: inline-block;
+    margin-left: 10px;
+    color: #888;
+}
+
+::placeholder {
+    color: #888;
+}
+
+select {
+    appearance: none;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #bb86fc;
+}
+
+.file-upload {
+    position: relative;
+    border: 2px dashed #333;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+
+.file-upload.dragging {
+    border-color: #bb86fc;
+    background-color: #333;
+}
+
+#file-list {
+    margin-top: 10px;
+}
+
+#file-list div {
+    background-color: #444;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.submit-button {
+    padding: 15px 30px;
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #9c64d1;
+}

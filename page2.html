@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Developer Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <img src="https://cdn.prod.website-files.com/65ce45e846bb053d1381b480/65d77e6de88cb75fb56970b7_stacked-white.svg" alt="CS Gaming Logo" class="logo">
+        <form action="submit.html" method="post" enctype="multipart/form-data">
+            <h1>Game Developer Form</h1>
+
+            <!-- Game Details Section -->
+            <fieldset>
+                <legend>Game Details</legend>
+                <label for="game-name">Game name *</label>
+                <input type="text" id="game-name" name="game-name" placeholder="Enter the game name" required>
+
+                <label for="year-founded">Year founded *</label>
+                <input type="number" id="year-founded" name="year-founded" placeholder="Enter the year founded" required>
+
+                <label for="team-size">Team size *</label>
+                <input type="number" id="team-size" name="team-size" placeholder="Enter the team size" required>
+
+                <label for="game-summary">Game Summary *</label>
+                <textarea id="game-summary" name="game-summary" minlength="100" maxlength="200" placeholder="Game summary only, no background or team history. 100-200 characters" required></textarea>
+
+                <label for="full-description">Full Description *</label>
+                <textarea id="full-description" name="full-description" minlength="250" maxlength="400" placeholder="A more in-depth description of your game. 250-400 characters" required></textarea>
+
+                <label for="gdd-upload">Upload Game Design Document</label>
+                <div class="file-upload">
+                    <input type="file" id="gdd-upload" name="gdd-upload" accept="image/*" required>
+                    <label for="gdd-upload" class="custom-file-upload">Choose File</label>
+                    <span class="file-upload-text">No file chosen</span>
+                </div>
+            </fieldset>
+
+            <!-- Discovery Metadata Section -->
+            <fieldset>
+                <legend>Discovery Metadata</legend>
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Select a genre</option>
+                    <option value="FPS">First Person Shooter</option>
+                    <option value="MMORPG">MMORPG</option>
+                    <option value="TCG">Trading Card Game</option>
+                    <option value="MOBA">MOBA</option>
+                    <option value="RPG">Role-Playing Game</option>
+                    <option value="Strategy">Strategy</option>
+                    <option value="Simulation">Simulation</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Puzzle">Puzzle</option>
+                </select>
+
+                <label for="platform">Platform</label>
+                <select id="platform" name="platform" required>
+                    <option value="">Select a platform</option>
+                    <option value="PC">PC</option>
+                    <option value="Console">Console</option>
+                    <option value="Mobile">Mobile</option>
+                    <option value="Web">Web</option>
+                </select>
+
+                <label for="network">Network</label>
+                <select id="network" name="network" required>
+                    <option value="">Select a network</option>
+                    <option value="Ethereum">Ethereum</option>
+                    <option value="Polygon">Polygon</option>
+                    <option value="Solana">Solana</option>
+                    <option value="Binance Smart Chain">Binance Smart Chain</option>
+                    <option value="Avalanche">Avalanche</option>
+                    <option value="B3">B3</option>
+                </select>
+
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Indie">Indie</option>
+                    <option value="AA">AA</option>
+                    <option value="AAA">AAA</option>
+                </select>
+
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="">Select a status</option>
+                    <option value="Pre-Production">Pre-Production</option>
+                    <option value="Development">Development</option>
+                    <option value="Beta">Beta</option>
+                    <option value="Released">Released</option>
+                </select>
+
+                <label for="game-website-address">Game Website</label>
+                <input type="url" id="website-address" name="website-address" placeholder="Enter the website address">
+
+                <label for="twitter-link">Twitter link</label>
+                <input type="url" id="twitter-link" name="twitter-link" placeholder="Enter the Twitter link">
+
+                <label for="discord-link">Discord link</label>
+                <input type="url" id="discord-link" name="discord-link" placeholder="Enter the Discord link">
+            </fieldset>
+
+            <!-- Game Media Section -->
+            <fieldset>
+                <legend>Game Media</legend>
+                <label for="media-url">Media URL</label>
+                <input type="url" id="media-url" name="media-url" placeholder="Enter the media URL" required>
+            </fieldset>
+
+            <!-- Game Collections Section -->
+            <fieldset>
+                <legend>Game Collections</legend>
+                <p>Set up your collection to let players mint and trade your in-game assets!</p>
+                <div class="file-upload" id="collection-upload">
+                    <label for="collection-upload-input" class="custom-file-upload">Drag and drop files here or click to select</label>
+                    <input type="file" id="collection-upload-input" name="collection-files[]" accept="image/*,video/*" multiple required>
+                    <div id="file-list"></div>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelectorAll('.file-upload input[type="file"]').forEach(inputElement => {
+            const fileUploadText = inputElement.nextElementSibling.nextElementSibling;
+
+            inputElement.addEventListener('change', (event) => {
+                if (inputElement.files.length > 0) {
+                    fileUploadText.textContent = inputElement.files[0].name;
+                } else {
+                    fileUploadText.textContent = 'No file chosen';
+                }
+            });
+        });
+
+        const collectionUploadInput = document.getElementById('collection-upload-input');
+        const fileList = document.getElementById('file-list');
+        const collectionUpload = document.getElementById('collection-upload');
+
+        collectionUpload.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            collectionUpload.classList.add('dragging');
+        });
+
+        collectionUpload.addEventListener('dragleave', (event) => {
+            event.preventDefault();
+            collectionUpload.classList.remove('dragging');
+        });
+
+        collectionUpload.addEventListener('drop', (event) => {
+            event.preventDefault();
+            collectionUpload.classList.remove('dragging');
+            handleFiles(event.dataTransfer.files);
+        });
+
+        collectionUploadInput.addEventListener('change', (event) => {
+            handleFiles(collectionUploadInput.files);
+        });
+
+        function handleFiles(files) {
+            fileList.innerHTML = '';
+            const fileArray = Array.from(files);
+            fileArray.slice(0, 10).forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.textContent = file.name;
+                fileList.appendChild(fileItem);
+            });
+
+            if (fileArray.length > 10) {
+                const extraFiles = document.createElement('div');
+                extraFiles.textContent = `And ${fileArray.length - 10} more files...`;
+                fileList.appendChild(extraFiles);
+            }
+        }
+    </script>
+</body>
+</html>
